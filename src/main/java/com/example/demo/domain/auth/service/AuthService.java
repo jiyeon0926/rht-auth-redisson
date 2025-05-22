@@ -49,6 +49,13 @@ public class AuthService {
         return new LoginResDto(AuthenticationScheme.BEARER.getName(), accessToken, refreshToken);
     }
 
+    public void logout(String accessToken) {
+        String email = jwtProvider.getUsername(accessToken);
+
+        tokenService.saveAccessToken(accessToken);
+        tokenService.deleteRefreshToken(email);
+    }
+
     // Refresh 토큰을 사용해 토큰 재발급
     public TokenDto refresh(String refreshToken) {
         String email = jwtProvider.getUsername(refreshToken);

@@ -1,5 +1,6 @@
 package com.example.demo.global.auth.jwt;
 
+import com.example.demo.domain.auth.service.TokenService;
 import com.example.demo.global.common.enums.AuthenticationScheme;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -24,6 +25,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JwtProvider jwtProvider;
     private final UserDetailsService userDetailsService;
+    private final TokenService tokenService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -36,9 +38,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private void authenticate(HttpServletRequest request) {
         String token = getTokenFromRequest(request);
 
-        // 토큰 검증, Refresh 토큰으로 인증 불가
+        // 토큰 검증, Refresh 토큰으로 인증 불가, BlackList에 저장됐으면 인증 불가
         if (token != null) {
-            if (!jwtProvider.validToken(token) || !jwtProvider.validAccessToken(token)) {
+            if (!jwtProvider.validToken(token)
+                    || !jwtProvider.validAccessToken(token)
+                    || tokenService.validBlackList(token)) {
                 return;
             }
 
