@@ -33,3 +33,103 @@
 |관리자 권한|GET|/admins/check|200 OK <br> 401 Unauthorized <br> 403 Forbidden|관리자만 접근할 수 있습니다.|
 
 </details>
+
+# 📁 프로젝트 구조
+<details>
+  <summary>프로젝트 구조</summary>
+  <br>
+  
+```
+ src
+    ├─main
+    │  ├─generated
+    │  ├─java
+    │  │  └─auth
+    │  │      └─demo
+    │  │          │  DemoApplication.java
+    │  │          │  
+    │  │          ├─domain
+    │  │          │  ├─auth
+    │  │          │  │  ├─controller
+    │  │          │  │  │      AuthController.java
+    │  │          │  │  │      
+    │  │          │  │  ├─dto
+    │  │          │  │  │      LoginReqDto.java
+    │  │          │  │  │      LoginResDto.java
+    │  │          │  │  │      RefreshReqDto.java
+    │  │          │  │  │      TokenDto.java
+    │  │          │  │  │      
+    │  │          │  │  └─service
+    │  │          │  │          AuthService.java
+    │  │          │  │          TokenService.java
+    │  │          │  │          
+    │  │          │  ├─test
+    │  │          │  │  └─controller
+    │  │          │  │          TestController.java
+    │  │          │  │          
+    │  │          │  └─user
+    │  │          │      ├─controller
+    │  │          │      │      AdminController.java
+    │  │          │      │      UserController.java
+    │  │          │      │      
+    │  │          │      ├─dto
+    │  │          │      │      SignupReqDto.java
+    │  │          │      │      SignupResDto.java
+    │  │          │      │      
+    │  │          │      ├─entity
+    │  │          │      │      User.java
+    │  │          │      │      
+    │  │          │      ├─repository
+    │  │          │      │      UserRepository.java
+    │  │          │      │      
+    │  │          │      └─service
+    │  │          │              AdminService.java
+    │  │          │              UserService.java
+    │  │          │              
+    │  │          └─global
+    │  │              ├─auth
+    │  │              │  │  UserDetailsImpl.java
+    │  │              │  │  UserDetailsServiceImpl.java
+    │  │              │  │  
+    │  │              │  ├─handler
+    │  │              │  │      DelegatedAccessDeniedHandler.java
+    │  │              │  │      DelegatedAuthenticationEntryPoint.java
+    │  │              │  │      
+    │  │              │  └─jwt
+    │  │              │          JwtAuthFilter.java
+    │  │              │          JwtProvider.java
+    │  │              │          
+    │  │              ├─common
+    │  │              │  ├─constants
+    │  │              │  │      RedisConstants.java
+    │  │              │  │      TokenConstants.java
+    │  │              │  │ 
+    │  │              │  ├─entity
+    │  │              │  │      BaseEntity.java
+    │  │              │  │      
+    │  │              │  └─enums
+    │  │              │          AuthenticationScheme.java
+    │  │              │          UserRole.java
+    │  │              │          
+    │  │              ├─config
+    │  │              │      RedisConfig.java
+    │  │              │      SecurityConfig.java
+    │  │              │      WebConfig.java
+    │  │              │      
+    │  │              └─exception
+    │  │                  └─handler
+    │  │                          GlobalExceptionHandler.java
+    │  │                          
+    │  └─resources
+    │      │  application.yml
+    │      │  
+    │      ├─static
+    │      └─templates
+    └─test
+        └─java
+            └─auth
+                └─demo
+                        DemoApplicationTests.java
+
+```
+</details>
