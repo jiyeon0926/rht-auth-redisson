@@ -24,7 +24,7 @@ jwt:
   expiry-millis: ${JWT_ACCESS_EXPIRY_MILLIS}
   refresh-expiry-millis: ${JWT_REFRESH_EXPIRY_MILLIS}
 
-# UserDetailsService ?? ??? ??
+# UserDetailsService 경고 메시지 억제
 logging:
   level:
     org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer: ERROR
