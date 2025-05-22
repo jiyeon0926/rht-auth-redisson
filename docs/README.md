@@ -112,7 +112,7 @@
     │  │              │          UserRole.java
     │  │              │          
     │  │              ├─config
-    │  │              │      RedisConfig.java
+    │  │              │      RedissonConfig.java
     │  │              │      SecurityConfig.java
     │  │              │      WebConfig.java
     │  │              │      
