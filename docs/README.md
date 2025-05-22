@@ -133,3 +133,8 @@
 
 ```
 </details>
+
+# 🏷️ Version
+- [V1. CrudRepository](https://github.com/jiyeon0926/rht-auth-redis-crud)
+- [V2. RedisTemplate](https://github.com/jiyeon0926/rht-auth-redis-template)
+- [V3. RedissonClient](https://github.com/jiyeon0926/rht-auth-redisson)
