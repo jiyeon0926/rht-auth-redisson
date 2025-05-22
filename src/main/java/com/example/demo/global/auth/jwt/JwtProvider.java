@@ -77,6 +77,18 @@ public class JwtProvider {
         return claims.containsKey("role");
     }
 
+    public Claims getClaims(String token) {
+        if (!StringUtils.hasText(token)) {
+            throw new MalformedJwtException("토큰이 비어 있습니다.");
+        }
+
+        return Jwts.parser()
+                .verifyWith(Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8)))
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+    }
+
     // 토큰 재발급 용도이기 때문에 Claims 객체에 role 정보 안 넣음
     private String generateRefreshTokenBy(String email) {
         Date currentDate = new Date();
@@ -104,18 +116,6 @@ public class JwtProvider {
                 .claim("role", user.getRole())
                 .signWith(Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8)), Jwts.SIG.HS256)
                 .compact();
-    }
-
-    private Claims getClaims(String token) {
-        if (!StringUtils.hasText(token)) {
-            throw new MalformedJwtException("토큰이 비어 있습니다.");
-        }
-
-        return Jwts.parser()
-                .verifyWith(Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8)))
-                .build()
-                .parseSignedClaims(token)
-                .getPayload();
     }
 
     private boolean tokenExpired(String token) {
