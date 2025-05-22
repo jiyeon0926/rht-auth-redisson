@@ -4,7 +4,7 @@
 - JPA
 - Spring Security
 - JWT
-- Redis
+- Redisson
 - MySQL
 
 # 💡 기능
